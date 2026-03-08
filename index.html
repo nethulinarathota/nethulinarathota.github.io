@@ -15,100 +15,164 @@
   --muted: #6b6560;
   --rule: rgba(240,235,224,0.1);
   --gold: #c9a96e;
-  --white: #0a0a0a;
+  --bg: #0a0a0a;
+  --surface: #111111;
+  --surface2: #181818;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
-body{font-family:'Figtree',sans-serif;background:var(--white);color:var(--ink);overflow-x:hidden;cursor:none;}
+body{font-family:'Figtree',sans-serif;background:var(--bg);color:var(--ink);overflow-x:hidden;cursor:none;}
+
+/* CURSOR */
 .cur-dot{width:8px;height:8px;background:var(--ink);border-radius:50%;position:fixed;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform 0.1s,background 0.2s;}
-.cur-ring{width:32px;height:32px;border:1px solid rgba(240,235,224,0.35);border-radius:50%;position:fixed;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:opacity 0.2s;}
+.cur-ring{width:32px;height:32px;border:1px solid rgba(240,235,224,0.3);border-radius:50%;position:fixed;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:opacity 0.2s;}
 .cur-dot.hover{transform:translate(-50%,-50%) scale(3);background:var(--gold);}
 .cur-ring.hover{opacity:0;}
-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:28px 64px;background:rgba(10,10,10,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--rule);}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:24px 64px;background:rgba(10,10,10,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--rule);}
 .nav-logo{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:20px;letter-spacing:0.04em;}
-.nav-right{display:flex;align-items:center;gap:48px;}
-.nav-links{display:flex;gap:36px;list-style:none;}
-.nav-links a{font-size:11.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);text-decoration:none;font-weight:500;transition:color 0.2s;}
+.nav-right{display:flex;align-items:center;gap:40px;}
+.nav-links{display:flex;gap:32px;list-style:none;}
+.nav-links a{font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);text-decoration:none;font-weight:500;transition:color 0.2s;}
 .nav-links a:hover{color:var(--ink);}
-.nav-cta{font-size:11.5px;letter-spacing:0.14em;text-transform:uppercase;font-weight:500;color:#0a0a0a;background:var(--gold);padding:10px 22px;text-decoration:none;transition:background 0.2s;}
-.nav-cta:hover{background:var(--ink-soft);color:#0a0a0a;}
-#hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;padding-top:100px;}
-.hero-left{padding:80px 64px;display:flex;flex-direction:column;justify-content:center;border-right:1px solid var(--rule);}
-.hero-eyebrow{display:flex;align-items:center;gap:14px;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:40px;opacity:0;animation:fadeIn 0.9s 0.1s forwards;}
+.nav-cta{font-size:11px;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;color:#0a0a0a;background:var(--gold);padding:10px 22px;text-decoration:none;transition:background 0.2s,transform 0.2s;}
+.nav-cta:hover{background:var(--ink-soft);transform:translateY(-1px);}
+
+/* HERO */
+#hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;padding-top:90px;}
+.hero-left{padding:72px 64px;display:flex;flex-direction:column;justify-content:center;border-right:1px solid var(--rule);}
+.hero-eyebrow{display:flex;align-items:center;gap:14px;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:36px;opacity:0;animation:fadeIn 0.9s 0.1s forwards;}
 .hero-eyebrow span{display:block;width:32px;height:1px;background:var(--gold);}
-h1.name{font-family:'Cormorant Garamond',serif;font-size:clamp(72px,8vw,116px);font-weight:300;line-height:0.92;letter-spacing:-0.02em;margin-bottom:40px;opacity:0;animation:fadeIn 0.9s 0.25s forwards;}
+h1.name{font-family:'Cormorant Garamond',serif;font-size:clamp(64px,7vw,108px);font-weight:300;line-height:0.92;letter-spacing:-0.02em;margin-bottom:28px;opacity:0;animation:fadeIn 0.9s 0.25s forwards;}
 h1.name em{font-style:italic;color:var(--gold);}
-.hero-bio{font-size:15px;line-height:1.75;color:var(--muted);max-width:400px;font-weight:300;margin-bottom:52px;opacity:0;animation:fadeIn 0.9s 0.4s forwards;}
+.hero-location{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted);letter-spacing:0.08em;margin-bottom:24px;opacity:0;animation:fadeIn 0.9s 0.35s forwards;}
+.hero-location svg{color:var(--gold);}
+.hero-bio{font-size:14.5px;line-height:1.8;color:var(--muted);max-width:420px;font-weight:300;margin-bottom:40px;opacity:0;animation:fadeIn 0.9s 0.4s forwards;}
 .hero-bio strong{color:var(--ink);font-weight:500;}
-.hero-actions{display:flex;gap:16px;flex-wrap:wrap;opacity:0;animation:fadeIn 0.9s 0.55s forwards;}
-.btn-dark{display:inline-flex;align-items:center;gap:10px;background:var(--gold);color:#0a0a0a;font-family:'Figtree',sans-serif;font-size:12px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;padding:15px 32px;text-decoration:none;transition:background 0.2s,transform 0.2s;}
-.btn-dark:hover{background:var(--ink-soft);color:#0a0a0a;transform:translateY(-2px);}
-.btn-ghost{display:inline-flex;align-items:center;gap:10px;background:transparent;color:var(--ink);font-family:'Figtree',sans-serif;font-size:12px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;padding:14px 32px;text-decoration:none;border:1px solid var(--rule);transition:border-color 0.2s,transform 0.2s;}
-.btn-ghost:hover{border-color:var(--ink);transform:translateY(-2px);}
-.hero-right{display:flex;flex-direction:column;justify-content:flex-end;padding:80px 64px;opacity:0;animation:fadeIn 1s 0.5s forwards;}
-.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);border:1px solid var(--rule);margin-bottom:48px;}
-.stat-item{background:#111111;padding:32px 28px;}
-.stat-num{font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:300;line-height:1;color:var(--ink);margin-bottom:6px;}
-.stat-num sup{font-size:24px;vertical-align:super;color:var(--gold);}
-.stat-label{font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);font-weight:500;}
-.tools-row{display:flex;flex-wrap:wrap;gap:10px;}
-.tool-pill{font-size:11.5px;letter-spacing:0.06em;color:var(--ink-soft);background:var(--cream);border:1px solid var(--cream-dark);padding:7px 16px;font-weight:500;transition:background 0.2s,border-color 0.2s,color 0.2s;}
-.tool-pill:hover{background:var(--gold);color:#0a0a0a;border-color:var(--gold);}
-.section-wrap{max-width:1200px;margin:0 auto;padding:100px 64px;border-bottom:1px solid var(--rule);}
-.section-header{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:64px;padding-bottom:24px;border-bottom:1px solid var(--rule);}
-.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(40px,5vw,64px);font-weight:300;letter-spacing:-0.02em;line-height:1;}
+.open-to{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:40px;opacity:0;animation:fadeIn 0.9s 0.48s forwards;}
+.open-pill{font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;font-weight:600;padding:5px 14px;border-radius:999px;border:1px solid rgba(201,169,110,0.35);color:var(--gold);}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap;opacity:0;animation:fadeIn 0.9s 0.55s forwards;}
+.btn-gold{display:inline-flex;align-items:center;gap:8px;background:var(--gold);color:#0a0a0a;font-family:'Figtree',sans-serif;font-size:11.5px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;padding:13px 28px;text-decoration:none;transition:background 0.2s,transform 0.2s;}
+.btn-gold:hover{background:var(--ink-soft);transform:translateY(-2px);}
+.btn-ghost{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--ink);font-family:'Figtree',sans-serif;font-size:11.5px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;padding:12px 28px;text-decoration:none;border:1px solid var(--rule);transition:border-color 0.2s,transform 0.2s,color 0.2s;}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px);}
+
+/* HERO RIGHT — photo + stats */
+.hero-right{display:flex;flex-direction:column;justify-content:center;align-items:center;padding:72px 64px;gap:40px;opacity:0;animation:fadeIn 1s 0.5s forwards;}
+.photo-frame{position:relative;width:240px;height:240px;flex-shrink:0;}
+.photo-frame::before{content:'';position:absolute;inset:-8px;border:1px solid rgba(201,169,110,0.3);}
+.photo-frame::after{content:'';position:absolute;inset:-16px;border:1px solid rgba(201,169,110,0.12);}
+.photo-frame img,.photo-placeholder{width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(20%);}
+.photo-placeholder{background:var(--surface2);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:var(--muted);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;}
+.photo-placeholder svg{color:var(--muted);opacity:0.4;}
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);border:1px solid var(--rule);width:100%;}
+.stat-item{background:var(--surface);padding:24px 22px;}
+.stat-num{font-family:'Cormorant Garamond',serif;font-size:44px;font-weight:300;line-height:1;color:var(--ink);margin-bottom:4px;}
+.stat-num sup{font-size:20px;vertical-align:super;color:var(--gold);}
+.stat-label{font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);font-weight:500;}
+
+/* SECTION BASE */
+.section-wrap{max-width:1200px;margin:0 auto;padding:96px 64px;border-bottom:1px solid var(--rule);}
+.section-header{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:56px;padding-bottom:20px;border-bottom:1px solid var(--rule);}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(36px,4.5vw,60px);font-weight:300;letter-spacing:-0.02em;line-height:1;}
 .section-title em{font-style:italic;color:var(--gold);}
 .section-index{font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);font-weight:500;}
-.project-row{display:grid;grid-template-columns:80px 1fr 220px;align-items:start;gap:40px;padding:44px 0;border-bottom:1px solid var(--rule);text-decoration:none;color:inherit;position:relative;transition:background 0.25s;}
-.project-row::after{content:'';position:absolute;left:-64px;right:-64px;top:0;bottom:0;background:var(--cream);z-index:-1;transform:scaleX(0);transform-origin:left;transition:transform 0.35s cubic-bezier(0.16,1,0.3,1);}
-.project-row:hover::after{transform:scaleX(1);}
-.project-num{font-family:'Cormorant Garamond',serif;font-size:48px;font-weight:300;color:var(--cream-dark);line-height:1;transition:color 0.2s;}
-.project-row:hover .project-num{color:var(--gold);}
-.project-title{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:400;letter-spacing:-0.01em;margin-bottom:10px;transition:color 0.2s;line-height:1.1;}
-.project-desc{font-size:14px;line-height:1.7;color:var(--muted);font-weight:300;max-width:520px;}
-.project-meta{display:flex;flex-direction:column;align-items:flex-end;gap:12px;}
-.project-tags{display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-end;}
-.tag{font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);border:1px solid var(--rule);padding:5px 12px;font-weight:500;background:#111111;}
-.project-arrow{font-size:22px;color:var(--cream-dark);transition:color 0.2s,transform 0.2s;line-height:1;}
-.project-row:hover .project-arrow{color:var(--ink);transform:translate(4px,-4px);}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);}
+.about-card{background:var(--surface);padding:36px 32px;}
+.about-card-label{font-size:10.5px;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--rule);}
+.about-card-value{font-size:14px;line-height:1.75;color:var(--ink-soft);font-weight:300;}
+.about-card-value strong{color:var(--ink);font-weight:500;display:block;margin-bottom:4px;}
+.lang-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px;}
+.lang-tag{font-size:11px;letter-spacing:0.08em;padding:5px 14px;border:1px solid var(--rule);color:var(--muted);}
+
+/* SKILLS */
 .skills-columns{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);}
-.skill-col{background:#111111;padding:40px 36px;}
-.skill-col-title{font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:24px;padding-bottom:16px;border-bottom:1px solid var(--rule);}
-.skill-list{list-style:none;display:flex;flex-direction:column;gap:12px;}
-.skill-list li{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--ink-soft);font-weight:400;}
+.skill-col{background:var(--surface);padding:36px 32px;}
+.skill-col-title{font-size:10.5px;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:20px;padding-bottom:14px;border-bottom:1px solid var(--rule);}
+.skill-list{list-style:none;display:flex;flex-direction:column;gap:11px;}
+.skill-list li{display:flex;align-items:center;gap:10px;font-size:13.5px;color:var(--ink-soft);font-weight:400;}
 .skill-list li::before{content:'';width:4px;height:4px;background:var(--gold);border-radius:50%;flex-shrink:0;}
-.connect-layout{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;}
-.connect-statement{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,3.5vw,44px);font-weight:300;line-height:1.3;letter-spacing:-0.01em;}
+
+/* TOOLS */
+.tools-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:40px;}
+.tool-pill{font-size:11.5px;letter-spacing:0.06em;color:var(--ink-soft);background:var(--surface);border:1px solid var(--rule);padding:8px 18px;font-weight:500;transition:background 0.2s,border-color 0.2s,color 0.2s;}
+.tool-pill:hover{background:var(--gold);color:#0a0a0a;border-color:var(--gold);}
+
+/* PROJECTS */
+.project-row{display:grid;grid-template-columns:72px 1fr 200px;align-items:start;gap:36px;padding:40px 0;border-bottom:1px solid var(--rule);text-decoration:none;color:inherit;position:relative;}
+.project-row::after{content:'';position:absolute;left:-64px;right:-64px;top:0;bottom:0;background:var(--surface);z-index:-1;transform:scaleX(0);transform-origin:left;transition:transform 0.35s cubic-bezier(0.16,1,0.3,1);}
+.project-row:hover::after{transform:scaleX(1);}
+.project-num{font-family:'Cormorant Garamond',serif;font-size:44px;font-weight:300;color:var(--cream-dark);line-height:1;transition:color 0.2s;}
+.project-row:hover .project-num{color:var(--gold);}
+.project-title{font-family:'Cormorant Garamond',serif;font-size:29px;font-weight:400;letter-spacing:-0.01em;margin-bottom:8px;line-height:1.1;transition:color 0.2s;}
+.project-desc{font-size:13.5px;line-height:1.7;color:var(--muted);font-weight:300;max-width:500px;}
+.project-meta{display:flex;flex-direction:column;align-items:flex-end;gap:12px;}
+.project-tags{display:flex;flex-wrap:wrap;gap:7px;justify-content:flex-end;}
+.tag{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);border:1px solid var(--rule);padding:4px 11px;font-weight:500;background:var(--surface);}
+.project-arrow{font-size:20px;color:var(--muted);transition:color 0.2s,transform 0.2s;}
+.project-row:hover .project-arrow{color:var(--gold);transform:translate(4px,-4px);}
+
+/* CONNECT */
+.connect-layout{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;}
+.connect-statement{font-family:'Cormorant Garamond',serif;font-size:clamp(26px,3vw,42px);font-weight:300;line-height:1.35;letter-spacing:-0.01em;margin-bottom:32px;}
 .connect-statement em{font-style:italic;color:var(--gold);}
+.connect-email{display:flex;align-items:center;gap:12px;margin-top:8px;}
+.connect-email a{font-size:14px;color:var(--gold);text-decoration:none;letter-spacing:0.02em;transition:opacity 0.2s;}
+.connect-email a:hover{opacity:0.7;}
+.connect-detail{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:8px;margin-top:12px;}
 .connect-links{display:flex;flex-direction:column;gap:2px;}
-.connect-link{display:flex;align-items:center;justify-content:space-between;padding:28px 32px;background:var(--cream);border:1px solid var(--cream-dark);text-decoration:none;color:var(--ink-soft);transition:background 0.2s,border-color 0.2s,color 0.2s;margin-bottom:2px;}
+.connect-link{display:flex;align-items:center;justify-content:space-between;padding:24px 28px;background:var(--surface);border:1px solid var(--rule);text-decoration:none;color:var(--ink-soft);transition:background 0.2s,border-color 0.2s,color 0.2s;margin-bottom:2px;}
 .connect-link:hover{background:var(--gold);border-color:var(--gold);color:#0a0a0a;}
-.cl-name{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:400;}
-.cl-handle{font-size:12px;color:var(--muted);letter-spacing:0.06em;margin-top:2px;transition:color 0.2s;}
 .connect-link:hover .cl-handle{color:rgba(10,10,10,0.6);}
-.cl-arrow{font-size:20px;transition:transform 0.2s;}
 .connect-link:hover .cl-arrow{transform:translate(3px,-3px);}
-footer{display:flex;align-items:center;justify-content:space-between;padding:32px 64px;}
-.footer-name{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:400;letter-spacing:0.02em;}
-.footer-copy{font-size:12px;color:var(--muted);letter-spacing:0.08em;}
-.footer-status{display:flex;align-items:center;gap:8px;font-size:11.5px;color:#3a8a5a;font-weight:500;letter-spacing:0.06em;}
-.status-dot{width:7px;height:7px;background:#3a8a5a;border-radius:50%;animation:pulse 2.5s infinite;}
-.reveal{opacity:0;transform:translateY(28px);transition:opacity 0.8s cubic-bezier(0.16,1,0.3,1),transform 0.8s cubic-bezier(0.16,1,0.3,1);}
+.cl-name{font-family:'Cormorant Garamond',serif;font-size:21px;font-weight:400;}
+.cl-handle{font-size:11.5px;color:var(--muted);letter-spacing:0.05em;margin-top:3px;transition:color 0.2s;}
+.cl-arrow{font-size:18px;transition:transform 0.2s;}
+
+/* CONTACT FORM */
+.contact-form{display:flex;flex-direction:column;gap:12px;margin-top:4px;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.form-field{display:flex;flex-direction:column;gap:6px;}
+.form-field label{font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);font-weight:500;}
+.form-field input,.form-field textarea{background:var(--surface);border:1px solid var(--rule);color:var(--ink);font-family:'Figtree',sans-serif;font-size:13.5px;padding:12px 16px;outline:none;transition:border-color 0.2s;resize:none;font-weight:300;}
+.form-field input:focus,.form-field textarea:focus{border-color:var(--gold);}
+.form-field input::placeholder,.form-field textarea::placeholder{color:var(--muted);opacity:0.6;}
+.form-submit{align-self:flex-start;background:var(--gold);color:#0a0a0a;font-family:'Figtree',sans-serif;font-size:11.5px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;padding:13px 28px;border:none;cursor:none;transition:background 0.2s,transform 0.2s;margin-top:4px;}
+.form-submit:hover{background:var(--ink-soft);transform:translateY(-2px);}
+.form-note{font-size:11.5px;color:var(--muted);margin-top:6px;display:none;}
+.form-note.show{display:block;}
+
+/* FOOTER */
+footer{display:flex;align-items:center;justify-content:space-between;padding:28px 64px;border-top:1px solid var(--rule);}
+.footer-name{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:400;letter-spacing:0.02em;}
+.footer-copy{font-size:11.5px;color:var(--muted);letter-spacing:0.06em;}
+.footer-status{display:flex;align-items:center;gap:8px;font-size:11.5px;color:#4aaa6e;font-weight:500;}
+.status-dot{width:6px;height:6px;background:#4aaa6e;border-radius:50%;animation:pulse 2.5s infinite;}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.8s cubic-bezier(0.16,1,0.3,1),transform 0.8s cubic-bezier(0.16,1,0.3,1);}
 .reveal.on{opacity:1;transform:none;}
-@keyframes fadeIn{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:none;}}
-@keyframes pulse{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(58,138,90,0.4);}50%{opacity:0.7;box-shadow:0 0 0 5px rgba(58,138,90,0);}}
-@media(max-width:900px){
-  nav{padding:20px 28px;}
-  .nav-links,.nav-cta{display:none;}
+
+@keyframes fadeIn{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:none;}}
+@keyframes pulse{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(74,170,110,0.4);}50%{opacity:0.7;box-shadow:0 0 0 5px rgba(74,170,110,0);}}
+
+/* RESPONSIVE */
+@media(max-width:960px){
+  nav{padding:18px 24px;}
+  .nav-links{display:none;}
   #hero{grid-template-columns:1fr;}
-  .hero-left{padding:80px 28px 48px;border-right:none;border-bottom:1px solid var(--rule);}
-  .hero-right{padding:48px 28px 60px;}
-  .section-wrap{padding:72px 28px;}
-  .project-row{grid-template-columns:48px 1fr;gap:20px;}
+  .hero-left{padding:72px 24px 40px;border-right:none;border-bottom:1px solid var(--rule);}
+  .hero-right{padding:40px 24px 64px;}
+  .section-wrap{padding:72px 24px;}
+  .about-grid,.skills-columns{grid-template-columns:1fr;}
+  .project-row{grid-template-columns:48px 1fr;gap:18px;}
   .project-meta{display:none;}
-  .skills-columns{grid-template-columns:1fr;}
   .connect-layout{grid-template-columns:1fr;gap:40px;}
-  footer{padding:28px;flex-direction:column;gap:12px;text-align:center;}
+  .form-row{grid-template-columns:1fr;}
+  footer{padding:24px;flex-direction:column;gap:10px;text-align:center;}
   .section-header{flex-direction:column;gap:8px;}
 }
 </style>
@@ -118,10 +182,12 @@ footer{display:flex;align-items:center;justify-content:space-between;padding:32p
 <div class="cur-dot" id="curDot"></div>
 <div class="cur-ring" id="curRing"></div>
 
+<!-- NAV -->
 <nav>
   <div class="nav-logo">Nethuli Narathota</div>
   <div class="nav-right">
     <ul class="nav-links">
+      <li><a href="#about">About</a></li>
       <li><a href="#skills">Expertise</a></li>
       <li><a href="#projects">Projects</a></li>
       <li><a href="#connect">Contact</a></li>
@@ -130,53 +196,95 @@ footer{display:flex;align-items:center;justify-content:space-between;padding:32p
   </div>
 </nav>
 
+<!-- HERO -->
 <section id="hero">
   <div class="hero-left">
-    <div class="hero-eyebrow"><span></span>Data Analytics</div>
+    <div class="hero-eyebrow"><span></span>Data Analytics Portfolio</div>
     <h1 class="name">Nethuli<br><em>Narathota</em></h1>
+    <div class="hero-location">
+      <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+      Colombo, Sri Lanka
+    </div>
     <p class="hero-bio">
-      I turn complex data into <strong>clear decisions.</strong> Specialising in analytical dashboards, predictive modelling, and data storytelling that drives real outcomes.
+      I am pursuing a degree in <strong>Applied Data Science and Communication,</strong> with a strong interest in transforming complex data into actionable insights. Drawn to analytics for its combination of analytical thinking, problem-solving, and the ability to drive informed decisions.
     </p>
+    <div class="open-to">
+      <span class="open-pill">Full-time Roles</span>
+      <span class="open-pill">Internships</span>
+      <span class="open-pill">Freelance</span>
+    </div>
     <div class="hero-actions">
-      <a href="#projects" class="btn-dark">View My Work</a>
-      <a href="https://linkedin.com" target="_blank" class="btn-ghost">LinkedIn ↗</a>
+      <a href="#projects" class="btn-gold">View My Work</a>
+      <a href="/cdn-cgi/l/email-protection#701e11021104181f04111e091d30171d11191c5e131f1d" class="btn-ghost">Email Me ↗</a>
     </div>
   </div>
   <div class="hero-right">
+    <div class="photo-frame">
+      <img src="profile.jpg" alt="Nethuli Narathota">
+    </div>
     <div class="stat-grid">
       <div class="stat-item">
         <div class="stat-num">3<sup>+</sup></div>
-        <div class="stat-label">Featured Projects</div>
+        <div class="stat-label">Projects</div>
       </div>
       <div class="stat-item">
         <div class="stat-num">5<sup>+</sup></div>
-        <div class="stat-label">Tools & Languages</div>
+        <div class="stat-label">Tools</div>
       </div>
       <div class="stat-item">
-        <div class="stat-num" style="display:flex;align-items:center;">
-          <svg width="40" height="40" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.2" style="color:var(--gold)"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
-        </div>
-        <div class="stat-label">Data Visualisation</div>
+        <div class="stat-num">2</div>
+        <div class="stat-label">Languages</div>
       </div>
       <div class="stat-item">
-        <div class="stat-num" style="display:flex;align-items:center;">
-          <svg width="40" height="40" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.2" style="color:var(--gold)"><path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
-        </div>
-        <div class="stat-label">Predictive Modelling</div>
+        <div class="stat-num" style="font-size:28px;padding-top:6px;">KDU</div>
+        <div class="stat-label">University</div>
       </div>
-    </div>
-    <div class="tools-row">
-      <span class="tool-pill">Python</span>
-      <span class="tool-pill">SQL</span>
-      <span class="tool-pill">Power BI</span>
-      <span class="tool-pill">R & Shiny</span>
-      <span class="tool-pill">DAX</span>
-      <span class="tool-pill">Pandas</span>
-      <span class="tool-pill">Excel</span>
     </div>
   </div>
 </section>
 
+<!-- ABOUT -->
+<div class="section-wrap" id="about">
+  <div class="section-header reveal">
+    <h2 class="section-title">About <em>Me</em></h2>
+    <span class="section-index">00 — About</span>
+  </div>
+  <div class="about-grid reveal">
+    <div class="about-card">
+      <div class="about-card-label">Education</div>
+      <div class="about-card-value">
+        <strong>Applied Data Science & Communication</strong>
+        General Sir John Kotelawala Defence University<br>
+        Colombo, Sri Lanka
+      </div>
+    </div>
+    <div class="about-card">
+      <div class="about-card-label">Spoken Languages</div>
+      <div class="about-card-value">
+        <div class="lang-tags">
+          <span class="lang-tag">English</span>
+          <span class="lang-tag">Sinhala</span>
+        </div>
+      </div>
+    </div>
+    <div class="about-card">
+      <div class="about-card-label">Interests</div>
+      <div class="about-card-value">Data Storytelling · Predictive Modelling · Dashboard Design · Clinical Analytics · SDG Research</div>
+    </div>
+    <div class="about-card">
+      <div class="about-card-label">Currently Open To</div>
+      <div class="about-card-value">
+        <div class="lang-tags">
+          <span class="lang-tag">Full-time Roles</span>
+          <span class="lang-tag">Internships</span>
+          <span class="lang-tag">Freelance</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SKILLS -->
 <div class="section-wrap" id="skills">
   <div class="section-header reveal">
     <h2 class="section-title">Areas of <em>Expertise</em></h2>
@@ -214,8 +322,20 @@ footer{display:flex;align-items:center;justify-content:space-between;padding:32p
       </ul>
     </div>
   </div>
+  <div class="tools-row reveal">
+    <span class="tool-pill">Python</span>
+    <span class="tool-pill">SQL</span>
+    <span class="tool-pill">Power BI</span>
+    <span class="tool-pill">R & Shiny</span>
+    <span class="tool-pill">DAX</span>
+    <span class="tool-pill">Pandas</span>
+    <span class="tool-pill">NumPy</span>
+    <span class="tool-pill">Excel</span>
+    <span class="tool-pill">Power Query</span>
+  </div>
 </div>
 
+<!-- PROJECTS -->
 <div class="section-wrap" id="projects">
   <div class="section-header reveal">
     <h2 class="section-title">Featured <em>Projects</em></h2>
@@ -256,35 +376,75 @@ footer{display:flex;align-items:center;justify-content:space-between;padding:32p
   </a>
 </div>
 
+<!-- CONNECT -->
 <div class="section-wrap" id="connect">
   <div class="section-header reveal">
     <h2 class="section-title">Get in <em>Touch</em></h2>
     <span class="section-index">03 — Contact</span>
   </div>
   <div class="connect-layout">
-    <div class="connect-statement reveal">
-      Open to <em>opportunities,</em> collaborations, and conversations about data.
+    <div class="reveal">
+      <div class="connect-statement">
+        Open to <em>opportunities,</em> collaborations, and conversations about data.
+      </div>
+      <div class="connect-email">
+        <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="color:var(--gold)"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+        <a href="/cdn-cgi/l/email-protection#1c727d6e7d687473687d7265715c7b717d7570327f7371"><span class="__cf_email__" data-cfemail="701e11021104181f04111e091d30171d11191c5e131f1d">[email&#160;protected]</span></a>
+      </div>
+      <div class="connect-detail">
+        <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="color:var(--gold)"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+        Colombo, Sri Lanka · UTC+5:30
+      </div>
+      <div style="margin-top:32px;">
+        <div class="connect-links">
+          <a href="https://github.com/nethuli0216" target="_blank" class="connect-link">
+            <div><div class="cl-name">GitHub</div><div class="cl-handle">github.com/nethuli0216</div></div>
+            <div class="cl-arrow">↗</div>
+          </a>
+          <a href="https://www.linkedin.com/in/nethuli-narathota-044426300" target="_blank" class="connect-link">
+            <div><div class="cl-name">LinkedIn</div><div class="cl-handle">nethuli-narathota-044426300</div></div>
+            <div class="cl-arrow">↗</div>
+          </a>
+        </div>
+      </div>
     </div>
-    <div class="connect-links reveal">
-      <a href="https://github.com/nethuli0216" target="_blank" class="connect-link">
-        <div><div class="cl-name">GitHub</div><div class="cl-handle">github.com/nethuli0216</div></div>
-        <div class="cl-arrow">↗</div>
-      </a>
-      <a href="https://linkedin.com" target="_blank" class="connect-link">
-        <div><div class="cl-name">LinkedIn</div><div class="cl-handle">Connect professionally</div></div>
-        <div class="cl-arrow">↗</div>
-      </a>
+    <div class="reveal">
+      <div class="skill-col-title" style="margin-bottom:20px;">Send a Message</div>
+      <div class="contact-form">
+        <div class="form-row">
+          <div class="form-field">
+            <label>Your Name</label>
+            <input type="text" id="fname" placeholder="Jane Smith">
+          </div>
+          <div class="form-field">
+            <label>Your Email</label>
+            <input type="email" id="femail" placeholder="jane@example.com">
+          </div>
+        </div>
+        <div class="form-field">
+          <label>Subject</label>
+          <input type="text" id="fsubject" placeholder="Internship Opportunity · Collaboration · etc.">
+        </div>
+        <div class="form-field">
+          <label>Message</label>
+          <textarea id="fmessage" rows="5" placeholder="Hi Nethuli, I came across your portfolio and..."></textarea>
+        </div>
+        <button class="form-submit" onclick="sendEmail()">Send Message →</button>
+        <p class="form-note" id="formNote">✓ Opening your email client...</p>
+      </div>
     </div>
   </div>
 </div>
 
+<!-- FOOTER -->
 <footer>
   <div class="footer-name">Nethuli Narathota</div>
   <div class="footer-copy">© 2026 — All rights reserved</div>
   <div class="footer-status"><div class="status-dot"></div>Available for opportunities</div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// Cursor
 const dot=document.getElementById('curDot'),ring=document.getElementById('curRing');
 let mx=0,my=0,rx=0,ry=0;
 document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px';});
@@ -293,9 +453,26 @@ document.querySelectorAll('a,button,.tool-pill').forEach(el=>{
   el.addEventListener('mouseenter',()=>{dot.classList.add('hover');ring.classList.add('hover');});
   el.addEventListener('mouseleave',()=>{dot.classList.remove('hover');ring.classList.remove('hover');});
 });
+
+// Scroll reveal
 const reveals=document.querySelectorAll('.reveal');
-const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}});},{threshold:0.1});
+const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}});},{threshold:0.08});
 reveals.forEach((el,i)=>{el.style.transitionDelay=(i%3)*0.1+'s';io.observe(el);});
+
+// Contact form → mailto
+function sendEmail(){
+  const name=document.getElementById('fname').value.trim();
+  const email=document.getElementById('femail').value.trim();
+  const subject=document.getElementById('fsubject').value.trim();
+  const message=document.getElementById('fmessage').value.trim();
+  if(!name||!email||!message){alert('Please fill in your name, email, and message.');return;}
+  const body=`Hi Nethuli,%0A%0A${encodeURIComponent(message)}%0A%0ABest regards,%0A${encodeURIComponent(name)}%0A${encodeURIComponent(email)}`;
+  const sub=encodeURIComponent(subject||'Reaching out from your portfolio');
+  window.location.href=`mailto:narathotanym@gmail.com?subject=${sub}&body=${body}`;
+  const note=document.getElementById('formNote');
+  note.classList.add('show');
+  setTimeout(()=>note.classList.remove('show'),4000);
+}
 </script>
 </body>
 </html>
